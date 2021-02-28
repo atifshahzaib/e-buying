@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>ECommerceApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +11,34 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <b><%= link_to "E-Buying", root_path, class: "navbar-brand" %></b>    
+        </div>
+        <ul class="nav navbar-nav">
+          <% if user_signed_in? %>
+            <li><%= link_to "Logout", 'sign_out'%></li> 
+          <% else %>
+            <li><%= link_to "Sign up", new_user_path%></li> 
+          <% end %>
+          <% if cart_has_items? %>
+            <li>
+              <%= link_to orders_path do%>
+                <i class="fa fa-shopping-cart"></i>
+                Cart&nbsp;<%= cart_count_over_one%></li>
+              <% end %>
+          <% end %> 
+        </ul> 
+        <% if cart_has_items? %>
+          <%= button_to "Checkout", 'checkout', class: "navbar-right navbar-text"%>
+        <% end %>
+      </div> 
+    </div>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

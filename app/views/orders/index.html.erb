@@ -1,0 +1,17 @@
+<table class="cart-items">
+    <thead>
+        <th>TITLE</th>
+        <th>PRICE</th>
+    </thead>
+    <tbody>
+      <% @products.each do |pro| %>
+        <tr>
+          <td><%= pro.name %></td>
+          <td><%= pro.price %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+<div style="text-align:right; font-size:20px;">
+        <h4>Total: <%= number_to_currency(@products.sum(:price))%></h4>
+</div>

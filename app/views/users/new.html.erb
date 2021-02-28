@@ -1,0 +1,11 @@
+<h2>Sign Up</h2>
+
+<%= form_for(@resource, html: { method: :post }) do |f| %>
+  <div class="field">
+    <%= f.label :email %><br/>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br/>
+    <%= f.label :password %><br/>
+    <%= f.password_field :password, autofocus: true, autocomplete: "password" %><br/>
+    <br><%= f.submit "Sign Up" %>
+  </div>
+<% end %>
