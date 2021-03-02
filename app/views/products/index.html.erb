@@ -1,15 +1,26 @@
+<% if notice %>
+  <p class="alert alert-success" style="width: 95%"><%= notice %></p>
+<% end %>
 <div class="row">
   <% @resources.each do |resource| %>
     <div class="col-md-4" style="padding-top: 20px">
-      <% if resource.avatar.attached? %>
-        <%= image_tag url_for(resource.avatar) , :class => "img_preview"%>
-      <% else %>
-        <%= image_tag(ActionController::Base.helpers.asset_path("default"), :class => "img_preview")%>
-      <% end %>
-      <div>
-        <p><%= resource.name%></p>
-        <p>&nbsp;<%= resource.price%></p>
-        <div class="addtocart-btn"><%= button_to "Add to cart", orders_path(product_id: resource.id)%></div>
+      <div class="card" style="width: 18rem;">
+        <% if resource.avatar.attached? %>
+          <%= image_tag url_for(resource.avatar) , :class => "img_preview"%>
+        <% else %>
+          <%= image_tag(ActionController::Base.helpers.asset_path("default"), :class => "img_preview")%>
+        <% end %>
+        <div class="card-body">
+          <div class="col-md-6">
+            <h5 class="card-title"><%= resource.name%></h5>
+            <p class="card-text"><%= resource.price%></p>
+          </div>
+          <div class="col-md-6 navbav-checkout">
+            <div class="addtocart-btn ">
+              <%= button_to "Add to cart", orders_path(product_id: resource.id), class: "btn btn-primary"%>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   <% end %>

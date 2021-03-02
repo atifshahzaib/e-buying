@@ -1,13 +1,18 @@
+<% if notice %>
+  <p class="alert alert-success" style="width: 95%"><%= notice %></p>
+<% end %>
 <table class="cart-items">
     <thead>
         <th>TITLE</th>
         <th>PRICE</th>
+        <th></th>
     </thead>
     <tbody>
       <% @products.each do |pro| %>
         <tr>
           <td><%= pro.name %></td>
           <td><%= pro.price %></td>
+          <td><%= link_to 'Remove Item', "remove_product_from_cart?product_id=#{pro.id}", method: :delete, data: {confirm: "Are you sure?"}%></td>
         </tr>
       <% end %>
     </tbody>
