@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_session, only: [:create]
   after_action :decrement_quantity, only: [:checkout]
-  # after_action :clear_cart, only: [:checkout]
   def index
     if @product_ids.present?
       @products = Product.where(id: @product_ids)
@@ -25,6 +24,7 @@ class OrdersController < ApplicationController
   def checkout
     if session[:user_id].present?
       create_order_items
+      clear_cart
       redirect_to root_path
     else
       @product_ids = session[:product_ids]
