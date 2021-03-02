@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    @resources = Product.all.order(:created_at)
+    @resources = Product.all.order("created_at desc")
   end
 
   def new
