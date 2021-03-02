@@ -16,13 +16,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show
-    @resource = Product.find(params[:id])
-  end
-
-  def edit
-  end
-
   def update
     if @resource.update(resource_params)
       redirect_to products_path, notice: 'Successfully Updated'
