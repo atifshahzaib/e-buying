@@ -17,7 +17,7 @@
           </div>
           <div class="col-md-6 navbav-checkout">
             <div class="addtocart-btn ">
-              <%= button_to "Add to cart", orders_path(product_id: resource.id), class: "btn btn-primary"%>
+              <%= button_to "Add to cart", orders_path(product_id: resource.id), class: "btn btn-primary", disabled: !(resource.quantity > 0) %>
             </div>
           </div>
         </div>

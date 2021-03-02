@@ -1,0 +1,13 @@
+<%= form_with(model: @resource, local: true) do |f| %>
+  <div class="col-md-4">
+    <%= f.label :name%><br/>
+    <%= f.text_field :name, class: "form-control", placeholder: "Enter name" %><br/>
+    <%= f.label :price%><br/>
+    <%= f.number_field :price, class: "form-control", placeholder: "Enter price" %><br/>
+    <%= f.label :quantity%><br/>
+    <%= f.number_field :quantity, class: "form-control", placeholder: "Enter quantity" %><br/>
+    <%= f.label :image%><br/>
+    <%= f.file_field :avatar, class: "form-control" %><br/>
+    <%= f.submit 'Create Product', class: 'btn btn-primary' %>
+  </div>
+<% end %>

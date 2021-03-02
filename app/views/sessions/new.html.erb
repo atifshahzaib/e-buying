@@ -4,10 +4,10 @@
 <h2>Log in</h2>
 <%= form_with(url: login_path, local: true) do |f| %>
   <div class="field col-md-4">
-    <%= f.label :email%>
-    <%= f.email_field :email, class: "form-control", placeholder: "Enter email address" %>
-    <%= f.label :password%>
-    <%= f.password_field :password, class: "form-control", placeholder: "Enter password" %>
+    <%= f.label :email%><br/>
+    <%= f.email_field :email, class: "form-control", placeholder: "Enter email address" %><br/>
+    <%= f.label :password%><br/>
+    <%= f.password_field :password, class: "form-control", placeholder: "Enter password" %><br/>
     <br><%= f.submit "Log in", class: "btn btn-primary" %>   
   </div>   
 <% end %>

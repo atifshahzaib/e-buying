@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    @resources = Product.available.order(:created_at)
+    @resources = Product.all.order(:created_at)
   end
 
   def new
@@ -10,9 +10,9 @@ class ProductsController < ApplicationController
   def create
     @resource = Product.new(resource_params)
     if @resource.save
-      render json: @resource, notice: 'Successfully Created'
+      redirect_to root_path, notice: 'Successfully Created'
     else
-      render :new
+      redirect_to new_product_path
     end
   end
 
@@ -25,16 +25,16 @@ class ProductsController < ApplicationController
 
   def update
     if @resource.update(resource_params)
-      render json: @resource, notice: 'Successfully Updated'
+      redirect_to products_path, notice: 'Successfully Updated'
     else
       render :edit
     end
   end
-  
+
   private
 
   def resource_params
-    params.require(:product).permit(:name, :price, :quantity, images: [])
+    params.require(:product).permit(:name, :price, :quantity, :avatar)
   end
 
 end

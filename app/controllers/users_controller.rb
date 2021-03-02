@@ -2,10 +2,10 @@ class UsersController < ApplicationController
   def new
     @resource = User.new
   end
-  
+
   def create
     product_ids = session[:product_ids]
-    resource = User.new(email: params[:user][:email], password: hash_password(params[:user][:password]))
+    resource = User.new(user_params)
     if resource.save
       session[:user_id] = resource.id
       session[:product_ids] = product_ids
@@ -16,17 +16,13 @@ class UsersController < ApplicationController
   end
 
   def logout
-    session[:user_id] = []
+    session[:user_id] = nil
     redirect_to root_path
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email, :password)
-  end
-
-  def hash_password(password)
-    BCrypt::Password.create(password).to_s
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 end
