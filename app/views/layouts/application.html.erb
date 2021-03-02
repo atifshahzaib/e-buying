@@ -19,10 +19,12 @@
         <ul class="nav navbar-nav">
           <% if user_signed_in? %>
             <li><%= link_to "Logout", sign_out_path %></li> 
-            <li><%= link_to "Add New Product", new_product_path %></li> 
           <% else %>
             <li><%= link_to "Sign up", new_user_path %></li>
             <li><%= link_to "Log In", login_path %></li> 
+          <% end %>
+          <% if current_user_admin? %>
+            <li><%= link_to "Add New Product", new_product_path %></li>
           <% end %>
           <% if cart_has_items? %>
             <li>
