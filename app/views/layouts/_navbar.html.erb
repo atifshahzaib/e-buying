@@ -1,0 +1,28 @@
+<div class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <b><%= link_to "E-Buying", root_path, class: "navbar-brand" %></b>    
+    </div>
+    <ul class="nav navbar-nav">
+      <% if user_signed_in? %>
+        <li><%= link_to "Logout", sign_out_path %></li> 
+      <% else %>
+        <li><%= link_to "Sign up", new_user_path %></li>
+        <li><%= link_to "Log In", login_path %></li> 
+      <% end %>
+      <% if current_user_admin? %>
+        <li><%= link_to "Add New Product", new_product_path %></li>
+      <% end %>
+      <% if cart_has_items? %>
+        <li>
+          <%= link_to orders_path do%>
+            <i class="fa fa-shopping-cart"></i>
+            Cart&nbsp;<%= cart_count_over_one%></li>
+          <% end %>
+      <% end %> 
+    </ul> 
+    <% if cart_has_items? %>
+      <%= button_to "Checkout", checkout_path , class: "btn btn-primary navbar-right navbav-checkout"%>
+    <% end %>
+  </div> 
+</div>

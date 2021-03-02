@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
       redirect_to root_path
     else
       @product_ids = session[:product_ids]
-      redirect_to new_user_path
+      redirect_to login_path
     end
   end
 
